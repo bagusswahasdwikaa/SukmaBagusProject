@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 const ProfileScreen = () => {
-  // State untuk menyimpan data profil
   const [profileImage, setProfileImage] = useState(null);
   const [name, setName] = useState('Sukma Bagus Wahasdwika');
-  const [email, setEmail] = useState('sukmabaguswahasdwika10@gmail.com ');
-  const [tempat, setTempatTinggal] = useState({ tempatTinggal: 'Lumajang, Jawa Timur' });
-  const [portfolio, setPortfolio] = useState({ projectHistory: 'https://github.com/bagusswahasdwikaa' });
+  const [email, setEmail] = useState('sukmabaguswahasdwika10@gmail.com');
+  const [tempat, setTempatTinggal] = useState('Lumajang, Jawa Timur');
+  const [portfolio, setPortfolio] = useState('https://github.com/bagusswahasdwikaa');
   const [phoneNumber, setPhoneNumber] = useState('082132164561');
   const [transport, setTransport] = useState('🚲');
   const [university, setUniversity] = useState('Politeknik Negeri Malang');
@@ -45,14 +53,18 @@ const ProfileScreen = () => {
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={selectImage}>
+        <TouchableOpacity onPress={selectImage} style={styles.imageContainer}>
           <Image
-            source={profileImage ? { uri: profileImage } : require('../assets/default-profile.png')}
+            source={
+              profileImage
+                ? { uri: profileImage }
+                : require('../assets/default-profile.png')
+            }
             style={styles.profileImage}
           />
-          {/* Simbol edit foto profil (simbol pensil atau kamera) */}
+          {/* Simbol edit foto profil */}
           <View style={styles.editIconContainer}>
-            <Text style={styles.editIcon}>✏️</Text> {/* Simbol pensil */}
+            <Text style={styles.editIcon}>✏️</Text>
           </View>
         </TouchableOpacity>
         <Text style={styles.activeText}>{name}</Text>
@@ -61,11 +73,7 @@ const ProfileScreen = () => {
       {/* Body */}
       <View style={styles.body}>
         <Text style={styles.label}>NAMA</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={setName}
-        />
+        <TextInput style={styles.input} value={name} onChangeText={setName} />
 
         <Text style={styles.label}>PERGURUAN TINGGI</Text>
         <TextInput
@@ -85,15 +93,15 @@ const ProfileScreen = () => {
         <Text style={styles.label}>TEMPAT TINGGAL</Text>
         <TextInput
           style={styles.input}
-          value={tempat.tempatTinggal}
-          onChangeText={(value) => setTempatTinggal({ ...tempat, tempatTinggal: value })}
+          value={tempat}
+          onChangeText={setTempatTinggal}
         />
 
         <Text style={styles.label}>PORTOFOLIO</Text>
         <TextInput
           style={styles.input}
-          value={portfolio.projectHistory}
-          onChangeText={(value) => setPortfolio({ ...portfolio, projectHistory: value })}
+          value={portfolio}
+          onChangeText={setPortfolio}
         />
 
         <Text style={styles.label}>NOMOR TELEPON</Text>
@@ -109,7 +117,10 @@ const ProfileScreen = () => {
           {['🚲', '🚗', '🚍'].map((item) => (
             <TouchableOpacity
               key={item}
-              style={[styles.transportButton, transport === item && styles.selectedTransport]}
+              style={[
+                styles.transportButton,
+                transport === item && styles.selectedTransport,
+              ]}
               onPress={() => setTransport(item)}
             >
               <Text style={styles.transportIcon}>{item}</Text>
@@ -145,6 +156,9 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#ffffff',
   },
+  imageContainer: {
+    position: 'relative',
+  },
   editIconContainer: {
     position: 'absolute',
     bottom: 0,
@@ -155,7 +169,7 @@ const styles = StyleSheet.create({
   },
   editIcon: {
     fontSize: 18,
-    color: '#ffffff',
+    color: '#333',
   },
   activeText: {
     marginTop: 10,
