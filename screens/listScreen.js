@@ -68,7 +68,7 @@ const ListScreen = ({ navigation }) => {
             const filteredData = data.filter((item) => item.id !== selectedItem.id);
             setData(filteredData);
             setHistory([selectedItem, ...history]);
-            navigation.navigate('History', { history: [selectedItem, ...history] }); // Navigasi ke HistoryScreen
+            navigation.navigate('Riwayat', { history: [selectedItem, ...history] }); // Navigasi ke HistoryScreen
             setModalVisible(false);
             Alert.alert('Berhasil', 'Item berhasil dihapus dan dipindahkan ke Riwayat!');
           },
@@ -79,7 +79,7 @@ const ListScreen = ({ navigation }) => {
 
   const handleFavoriteItem = () => {
     setFavorites([selectedItem, ...favorites]);
-    navigation.navigate('Favorites', { favorites: [selectedItem, ...favorites] }); // Navigasi ke FavoriteScreen
+    navigation.navigate('Favorit', { favorites: [selectedItem, ...favorites] }); // Navigasi ke FavoriteScreen
     setModalVisible(false);
     Alert.alert('Berhasil', 'Item berhasil ditambahkan ke Favorit!');
   };
